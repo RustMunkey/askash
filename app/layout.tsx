@@ -1,12 +1,13 @@
+// app/layout.tsx
 import type { Metadata } from "next";
-import { JetBrains_Mono, Syne } from "next/font/google";
+import { JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { LayoutShell } from "@/components/layout-shell";
 import "./globals.css";
 
 const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-sans" });
-const syne = Syne({ subsets: ["latin"], variable: "--font-display" });
+const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-display" });
 
 export const metadata: Metadata = {
   title: "askash.dev",
@@ -19,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${jetbrainsMono.variable} ${syne.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${jetbrainsMono.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
       <body className="antialiased">
         <ThemeProvider attribute="class" defaultTheme="dark" disableTransitionOnChange>
           <TooltipProvider>

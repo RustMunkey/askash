@@ -34,11 +34,11 @@ const featured = [
 export default function Page() {
   return (
     <>
-      <section className="flex min-h-[calc(100svh-var(--header-height))] flex-col justify-center px-10 py-20 max-w-3xl">
+      <section className="flex min-h-[calc(100svh-var(--header-height))] flex-col justify-center px-4 py-14 sm:px-10 sm:py-20 max-w-3xl">
         <p className="text-muted-foreground mb-4 text-sm tracking-widest uppercase">
           Software Engineer
         </p>
-        <h1 className="font-display text-6xl font-bold tracking-tight mb-6 leading-tight">
+        <h1 className="font-display text-4xl sm:text-6xl font-bold tracking-tight mb-6 leading-tight">
           Asher Wilson
         </h1>
         <p className="text-muted-foreground text-lg leading-relaxed mb-10 max-w-xl">
@@ -62,7 +62,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="border-t px-10 py-16">
+      <section className="border-t px-4 py-10 sm:px-10 sm:py-16">
         <div className="grid grid-cols-2 gap-8 max-w-3xl md:grid-cols-4">
           {stats.map((stat) => (
             <div key={stat.label}>
@@ -75,7 +75,7 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="border-t px-10 py-16">
+      <section className="border-t px-4 py-10 sm:px-10 sm:py-16">
         <div className="max-w-3xl">
           <div className="flex items-baseline justify-between mb-8">
             <h2 className="font-display text-2xl font-bold">Featured Work</h2>

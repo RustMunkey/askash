@@ -30,7 +30,7 @@ const process = [
 
 export default function FullstackPage() {
   return (
-    <div className="px-10 py-16 max-w-3xl">
+    <div className="px-4 py-10 sm:px-10 sm:py-16 max-w-3xl">
       <div className="mb-12">
         <p className="text-muted-foreground mb-3 text-sm tracking-widest uppercase">Web Development</p>
         <h1 className="font-display text-5xl font-bold tracking-tight mb-4">Full-stack</h1>

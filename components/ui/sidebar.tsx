@@ -27,8 +27,8 @@ import { SidebarLeftIcon } from "@hugeicons/core-free-icons"
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state"
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
-const SIDEBAR_WIDTH = "16rem"
-const SIDEBAR_WIDTH_MOBILE = "18rem"
+const SIDEBAR_WIDTH = "19rem"
+const SIDEBAR_WIDTH_MOBILE = "21rem"
 const SIDEBAR_WIDTH_ICON = "3rem"
 const SIDEBAR_KEYBOARD_SHORTCUT = "b"
 
@@ -321,7 +321,7 @@ function SidebarHeader({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="sidebar-header"
       data-sidebar="header"
-      className={cn("gap-2 p-2 flex flex-col", className)}
+      className={cn("gap-2 pl-4 pr-2 py-2 flex flex-col", className)}
       {...props}
     />
   )
@@ -332,7 +332,7 @@ function SidebarFooter({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="sidebar-footer"
       data-sidebar="footer"
-      className={cn("gap-2 p-2 flex flex-col", className)}
+      className={cn("gap-2 pl-4 pr-2 py-2 flex flex-col", className)}
       {...props}
     />
   )
@@ -372,7 +372,7 @@ function SidebarGroup({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="sidebar-group"
       data-sidebar="group"
       className={cn(
-        "p-2 relative flex w-full min-w-0 flex-col",
+        "pl-4 pr-2 py-2 relative flex w-full min-w-0 flex-col",
         className
       )}
       {...props}

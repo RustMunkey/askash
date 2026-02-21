@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { motion } from "framer-motion"
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -25,7 +25,9 @@ import { HugeiconsIcon } from "@hugeicons/react"
 import {
   ArrowRight01Icon,
   ArrowUpDoubleIcon,
+  Search01Icon,
 } from "@hugeicons/core-free-icons"
+import { SearchDialog } from "@/components/search-dialog"
 
 const navGroups = [
   {
@@ -161,8 +163,10 @@ const navGroups = [
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const [openItems, setOpenItems] = React.useState<Record<string, boolean>>({})
+  const [searchOpen, setSearchOpen] = React.useState(false)
   const { state } = useSidebar()
   const router = useRouter()
+  const pathname = usePathname()
 
   const toggle = (title: string) =>
     setOpenItems((prev) => ({ ...prev, [title]: !prev[title] }))
@@ -173,7 +177,16 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       className="sticky top-(--header-height) h-[calc(100svh-var(--header-height))]"
       {...props}
     >
-      <SidebarHeader>
+      <SidebarHeader className="gap-2">
+        <button
+          type="button"
+          onClick={() => setSearchOpen(true)}
+          className="sm:hidden text-muted-foreground hover:text-foreground hover:bg-sidebar-accent flex w-full items-center gap-2 rounded-md border px-3 py-2 text-sm transition-colors cursor-pointer"
+        >
+          <HugeiconsIcon icon={Search01Icon} strokeWidth={1.5} className="size-4 shrink-0" />
+          <span className="flex-1 text-left">Search...</span>
+          <kbd className="bg-muted text-muted-foreground rounded px-1.5 py-0.5 text-[10px] font-sans hidden sm:inline-flex">⌘K</kbd>
+        </button>
         <button
           type="button"
           onClick={() => setOpenItems({})}
@@ -182,6 +195,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <HugeiconsIcon icon={ArrowUpDoubleIcon} strokeWidth={1.5} className="size-4" />
           <span>Collapse all</span>
         </button>
+        <SearchDialog open={searchOpen} onOpenChange={setSearchOpen} />
       </SidebarHeader>
       <SidebarContent>
         {navGroups.map((group) => (
@@ -193,8 +207,14 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   <SidebarMenuButton
                     onClick={() => {
                       if (item.items.length) {
-                        router.push(item.url)
-                        toggle(item.title)
+                        const onParent = pathname === item.url
+                        const isOpen = openItems[item.title]
+                        if (onParent && isOpen) {
+                          toggle(item.title)
+                        } else {
+                          if (!onParent) router.push(item.url)
+                          setOpenItems((prev) => ({ ...prev, [item.title]: true }))
+                        }
                       }
                     }}
                     asChild={!item.items.length}
@@ -241,14 +261,14 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </SidebarGroup>
         ))}
       </SidebarContent>
-      <SidebarFooter className="border-t">
+      <SidebarFooter className="border-t gap-2">
         <Link
           href="/profile"
           className="hover:bg-sidebar-accent flex items-center gap-3 rounded-lg p-2 transition-colors"
         >
-          <Avatar>
-            <AvatarImage src="/avatar.jpg" alt="Asher Wilson" />
-            <AvatarFallback>AW</AvatarFallback>
+          <Avatar className="rounded-[22%] after:rounded-[22%]">
+            <AvatarImage src="/avatar.jpg" alt="Asher Wilson" className="rounded-[22%]" />
+            <AvatarFallback className="rounded-[22%]">AW</AvatarFallback>
           </Avatar>
           <div className="flex min-w-0 flex-col">
             <span className="text-sm font-medium leading-none">Asher Wilson</span>

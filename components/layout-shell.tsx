@@ -2,8 +2,10 @@
 
 import React from "react"
 import { AppSidebar } from "@/components/app-sidebar"
+import { AvailabilityBadge } from "@/components/availability-badge"
 import { SecondaryHeader } from "@/components/secondary-header"
 import { SiteHeader } from "@/components/site-header"
+import { TableOfContents } from "@/components/table-of-contents"
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
 
 export function LayoutShell({ children }: { children?: React.ReactNode }) {
@@ -18,10 +20,16 @@ export function LayoutShell({ children }: { children?: React.ReactNode }) {
         <div className="flex flex-1">
           <AppSidebar />
           <SidebarInset>
-            {children}
+            <div className="flex min-h-full">
+              <div className="flex-1 min-w-0" data-toc-content>
+                {children}
+              </div>
+              <TableOfContents />
+            </div>
           </SidebarInset>
         </div>
       </SidebarProvider>
+      <AvailabilityBadge />
     </div>
   )
 }

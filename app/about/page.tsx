@@ -8,10 +8,10 @@ const links = [
 
 export default function AboutPage() {
   return (
-    <div className="px-10 py-16 max-w-3xl">
+    <div className="px-4 py-10 sm:px-10 sm:py-16 max-w-3xl">
       <div className="mb-12">
         <p className="text-muted-foreground mb-3 text-sm tracking-widest uppercase">About</p>
-        <h1 className="font-display text-5xl font-bold tracking-tight mb-6">Asher Wilson</h1>
+        <h1 className="font-display text-3xl sm:text-5xl font-bold tracking-tight mb-6">Asher Wilson</h1>
         <div className="space-y-4 text-muted-foreground text-lg leading-relaxed max-w-xl">
           <p>I'm a software engineer with 5+ years building web applications — from pixel-perfect interfaces to the infrastructure that runs them.</p>
           <p>I care deeply about developer experience, clean APIs, and shipping things that actually work. Currently available for freelance, contract, and full-time opportunities.</p>
