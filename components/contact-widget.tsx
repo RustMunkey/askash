@@ -44,23 +44,48 @@ export function ContactWidget() {
             className="flex flex-col gap-px rounded-xl border bg-background/95 backdrop-blur-md shadow-lg overflow-hidden w-52"
           >
             {options.map((opt) => {
-              const Comp = opt.external ? "a" : Link
-              const extraProps = opt.external
-                ? { href: opt.href, target: "_blank", rel: "noopener noreferrer" }
-                : { href: opt.href }
+              const isExternal = opt.external ?? false
+
+              if (isExternal) {
+                return (
+                  <a
+                    key={opt.label}
+                    href={opt.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setOpen(false)}
+                    className="flex items-center gap-3 px-4 py-3 hover:bg-muted transition-colors group"
+                  >
+                    <HugeiconsIcon
+                      icon={opt.icon}
+                      strokeWidth={1.5}
+                      className="size-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0"
+                    />
+                    <div className="min-w-0">
+                      <p className="text-sm font-medium leading-none mb-0.5">{opt.label}</p>
+                      <p className="text-muted-foreground text-xs truncate">{opt.description}</p>
+                    </div>
+                  </a>
+                )
+              }
+
               return (
-                <Comp
+                <Link
                   key={opt.label}
-                  {...(extraProps as React.ComponentProps<"a">)}
+                  href={opt.href}
                   onClick={() => setOpen(false)}
                   className="flex items-center gap-3 px-4 py-3 hover:bg-muted transition-colors group"
                 >
-                  <HugeiconsIcon icon={opt.icon} strokeWidth={1.5} className="size-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0" />
+                  <HugeiconsIcon
+                    icon={opt.icon}
+                    strokeWidth={1.5}
+                    className="size-4 text-muted-foreground group-hover:text-foreground transition-colors shrink-0"
+                  />
                   <div className="min-w-0">
                     <p className="text-sm font-medium leading-none mb-0.5">{opt.label}</p>
                     <p className="text-muted-foreground text-xs truncate">{opt.description}</p>
                   </div>
-                </Comp>
+                </Link>
               )
             })}
           </motion.div>
